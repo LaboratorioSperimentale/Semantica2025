@@ -1,0 +1,8 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\beamer@sectionintoc {1}{La costruzione NPN}{3}{0}{1}
+\beamer@sectionintoc {2}{Il Dataset}{7}{0}{2}
+\beamer@sectionintoc {3}{BERT, modello di encoder}{9}{0}{3}
+\beamer@sectionintoc {4}{Tadsk 1: Identificazione}{11}{0}{4}
+\beamer@sectionintoc {5}{Task 2: Identificazione (perturbando l'ordine delle parole)}{13}{0}{5}
+\beamer@sectionintoc {6}{Task 3: Disambiguazione semantica}{15}{0}{6}

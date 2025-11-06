@@ -1,0 +1,116 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+
+\usetheme{metropolis} % Tema moderno e minimale
+
+
+\title{Identificazione e disambiguazione della costruzione NPN con BERT}
+\subtitle{Caso studio di Scivetti e Schneider sulla costruzione inglese} % <-- sottotitolo
+\author{Corso di Semantica a.a. 2025/2026}
+\institute{Università di Bologna}
+\date{18 Novembre 2025}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Indice}
+  \tableofcontents
+\end{frame}
+
+\section{La costruzione NPN}
+
+\begin{frame}{Cos'è la costruzione NPN}
+  La costruzione NPN è stata ampiamente studiata in inglese da una prospettiva costruzionista,
+  in particolare da Jackendoff (2008) e Sommerer \& Baumann (2021).
+
+  \begin{tcolorbox}[colback=white, colframe=black, arc=4mm, boxrule=0.8pt, center title, title=Construction Schema]
+    \[
+      Noun_1 \; \text{Preposition} \; Noun_2
+    \]
+  \end{tcolorbox}
+
+  I due nomi nella costruzione devono avere forma identica, anche per la declinazione del numero.
+  La costruzione non ammette nomi accompagnati da determinati.
+\end{frame}
+
+\begin{frame}{Cos'è la costruzione NPN}
+  La costruzione può comparire in diverse posizioni sintattiche, ad esempio come modificatore avverbiale o come modificatore nominale.
+
+  \begin{exampleblock}{Esempi}
+    \begin{itemize}
+      \item \textit{I need you to get this \textbf{word for word.}} 
+      \\
+      \hfill (modificatore avverbiale)
+      \item \textit{There is a rebellious quality to your \textbf{day to day}
+responses which have not gone unnoticed.} \hfill (modificatore nominale)
+    \end{itemize}
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}{Significato e funzione}
+
+Significati delle costruzioni NPN istanziate da \textit{to}
+
+  \begin{block}{SUCCESSION}
+    Testo del blocco esplicativo.
+  \end{block}
+
+  \begin{block}{JUXTAPOSITION}
+    Testo del blocco esplicativo.
+  \end{block}
+
+\end{frame}
+
+
+\section{Il Dataset}
+
+\begin{frame}{Il Dataset}
+  \begin{itemize}
+    \item estrazione da COCA
+    \item Eliminazione dei casi PNPN
+    \item Identificazione dei distrattori
+    \item 2 broad meanings that we highlight: SUCCESSION JUXTAPOSITION
+  \end{itemize}
+\end{frame}
+
+\section{BERT, modello di encoder}
+
+\begin{frame}{BERT, modello di encoder}
+  \begin{block}{ENCODER}
+    Testo del blocco esplicativo.
+  \end{block}
+\end{frame}
+
+\section{Tadsk 1: Identificazione}
+
+\begin{frame}{Dataset}
+  \begin{block}{Esempio di blocco}
+    Testo del blocco esplicativo.
+  \end{block}
+\end{frame}
+
+\section{Task 2: Identificazione (perturbando l'ordine delle parole)}
+
+\begin{frame}{Paper S}
+  \begin{block}{Esempio di blocco}
+    Testo del blocco esplicativo.
+  \end{block}
+\end{frame}
+
+\section{Task 3: Disambiguazione semantica}
+
+\begin{frame}{Paper S}
+  \begin{block}{Esempio di blocco}
+    Testo del blocco esplicativo.
+  \end{block}
+\end{frame}
+
+\end{document}
