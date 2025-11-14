@@ -77,16 +77,75 @@ Significati delle costruzioni NPN istanziate da \textit{to}
     \item estrazione da COCA
     \item Eliminazione dei casi PNPN
     \item Identificazione dei distrattori
-    \item 2 broad meanings that we highlight: SUCCESSION JUXTAPOSITION
+    \item Annotazione per tutte le istanze delle etichette semantiche 
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Affidabilità dell'annotazione}
+
+\textbf{Doppia annotazione}
+\begin{itemize}
+    \item Annotato \textbf{~25\%} del dataset
+    \item Accordo grezzo: \textbf{84\%}
+    \item Cohen's kappa: \textbf{0.754} (accordo forte)
+\end{itemize}
+
+\vspace{0.5cm}
+
+\textbf{Dimensioni del dataset}
+\begin{itemize}
+    \item \textbf{6599} istanze totali (N-to-N)
+    \item \textbf{1885} istanze con doppia annotazione
+\end{itemize}
+
 \end{frame}
 
 \section{BERT, modello di encoder}
 
-\begin{frame}{BERT, modello di encoder}
-  \begin{block}{ENCODER}
-    Testo del blocco esplicativo.
-  \end{block}
+\begin{frame}{Embedding e trasformazioni del testo}
+
+\begin{block}{Embedding}
+Le parole e le frasi vengono trasformate in \textbf{vettori numerici} chiamati embedding. 
+Questi vettori catturano somiglianze semantiche e relazioni tra parole, permettendo al modello di “comprendere” il testo.
+\end{block}
+
+\begin{block}{Perché trasformare il testo}
+Il testo deve diventare numerico per essere elaborato dai modelli. 
+Trasformare significa codificare ogni parola in uno spazio continuo dove vicinanza = somiglianza.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Transformer e Encoder}
+
+\begin{block}{Transformer}
+Modello basato su \textbf{self-attention}: ogni parola osserva tutte le altre per capire il contesto. 
+Non usa ricorrenza e permette di gestire sequenze lunghe in parallelo.
+\end{block}
+
+\begin{block}{Encoder}
+L’encoder produce rappresentazioni contestuali di ogni parola, che riflettono sia il significato intrinseco sia le relazioni con le altre parole nel testo.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{BERT: bidirezionale e contestuale}
+
+\begin{block}{Cos'è BERT}
+BERT è un Transformer \textbf{solo encoder}, che legge il contesto a sinistra e a destra di ogni parola.
+Produce embedding contestuali che catturano significato, struttura sintattica e relazioni tra parole.
+\end{block}
+
+\begin{block}{Addestramento}
+- \textbf{Masked Language Modeling}: predire token mascherati.\\
+- \textbf{Next Sentence Prediction}: capire se due frasi sono in sequenza.
+\end{block}
+
+\begin{block}{Perché usarlo}
+Le rappresentazioni di BERT possono essere adattate a molti task NLP: classificazione, NER, question answering. 
+Per questo caso studio, mostrano come la semantica delle costruzioni è rappresentata.
+\end{block}
+
 \end{frame}
 
 \section{Tadsk 1: Identificazione}
