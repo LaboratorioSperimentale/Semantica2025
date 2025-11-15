@@ -148,7 +148,51 @@ Per questo caso studio, mostrano come la semantica delle costruzioni è rapprese
 
 \end{frame}
 
-\section{Tadsk 1: Identificazione}
+\begin{frame}{Near Minimal Pairs e Distrattori}
+
+\begin{block}{NtoN distractors}
+Oltre alle reali istanze della costruzione NtoN, il corpus contiene anche
+pattern superficiali \textbf{Noun + to + Noun} che non sono costruzioni NtoN.
+Derivano da contesti sintattici diversi (es. verbi che reggono un oggetto
+e una PP con \emph{to}): \emph{stick plastic to plastic}, \emph{time to time travel}, ecc.
+
+Questi casi non esprimono il significato della costruzione ma forniscono utili \textbf{esempi negativi} per testare se il modello.
+\end{block}
+
+\begin{block}{Near minimal pairs}
+Poiché condividono la stessa forma superficiale dei veri NtoN,
+questi distrattori costituiscono \textbf{near minimal pairs}:
+frasi grammaticali, naturali, quasi identiche in superficie,
+ma con \textbf{struttura e significato diversi}.
+\end{block}
+
+\begin{block}{Dataset}
+Nel case study \textbf{456} near minimal pairs
+come distrattori dal corpus.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Split training test set}
+\begin{block}{Evitare overfitting}
+Max 20 occorrenze per lemma per evitare overfitting e ridurre la sproporzione tra lemmi altamente frequenti e lemmi rari.
+\end{block}
+
+\begin{block}{Controllo della generalizzazione}
+Generazione split casuali di train/test basati sul lemma del nome presente nella costruzione NtoN, in modo che nessun lemma compaia sia nel training set sia nel test set.
+\end{block}
+
+
+\begin{block}{Bilancimento training}
+Poiché il numero di distrattori è significativamente inferiore rispetto alle istanze della costruzione, per bilanciare le categorie nel training set è stato utilizzato l’80\% dei distrattori, abbinato allo stesso numero di costruzioni. Il test set è quindi composto dal restante 20\% dei distrattori, insieme a tutte le costruzioni eccedenti quelle usate per il training.
+\end{block}
+
+\end{frame}
+
+
+
+
+\section{Task 1: Identificazione}
 
 \begin{frame}{Dataset}
   \begin{block}{Esempio di blocco}
