@@ -100,6 +100,50 @@ Significati delle costruzioni NPN istanziate da \textit{to}
 
 \end{frame}
 
+\section{Training e Test set}
+
+\begin{frame}{Near Minimal Pairs e Distrattori}
+
+\begin{block}{NtoN distractors}
+Oltre alle reali istanze della costruzione NtoN, il corpus contiene anche
+pattern superficiali \textbf{Noun + to + Noun} che non sono costruzioni NtoN.
+Derivano da contesti sintattici diversi (es. verbi che reggono un oggetto
+e una PP con \emph{to}): \emph{stick plastic to plastic}, \emph{time to time travel}, ecc.
+
+Questi casi non esprimono il significato della costruzione ma forniscono utili \textbf{esempi negativi} per testare se il modello.
+\end{block}
+
+\begin{block}{Near minimal pairs}
+Poiché condividono la stessa forma superficiale dei veri NtoN,
+questi distrattori costituiscono \textbf{near minimal pairs}:
+frasi grammaticali, naturali, quasi identiche in superficie,
+ma con \textbf{struttura e significato diversi}.
+\end{block}
+
+\begin{block}{Dataset}
+Nel case study \textbf{456} near minimal pairs
+come distrattori dal corpus.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Split training test set}
+\begin{block}{Evitare overfitting}
+Max 20 occorrenze per lemma per evitare overfitting e ridurre la sproporzione tra lemmi altamente frequenti e lemmi rari.
+\end{block}
+
+\begin{block}{Controllo della generalizzazione}
+Generazione split casuali di train/test basati sul lemma del nome presente nella costruzione NtoN, in modo che nessun lemma compaia sia nel training set sia nel test set.
+\end{block}
+
+
+\begin{block}{Bilancimento training}
+Poiché il numero di distrattori è significativamente inferiore rispetto alle istanze della costruzione, per bilanciare le categorie nel training set è stato utilizzato l’80\% dei distrattori, abbinato allo stesso numero di costruzioni. Il test set è quindi composto dal restante 20\% dei distrattori, insieme a tutte le costruzioni eccedenti quelle usate per il training.
+\end{block}
+
+\end{frame}
+
+
 \section{BERT, modello di encoder}
 
 \begin{frame}{Embedding e trasformazioni del testo}
@@ -148,55 +192,34 @@ Per questo caso studio, mostrano come la semantica delle costruzioni è rapprese
 
 \end{frame}
 
-\begin{frame}{Near Minimal Pairs e Distrattori}
-
-\begin{block}{NtoN distractors}
-Oltre alle reali istanze della costruzione NtoN, il corpus contiene anche
-pattern superficiali \textbf{Noun + to + Noun} che non sono costruzioni NtoN.
-Derivano da contesti sintattici diversi (es. verbi che reggono un oggetto
-e una PP con \emph{to}): \emph{stick plastic to plastic}, \emph{time to time travel}, ecc.
-
-Questi casi non esprimono il significato della costruzione ma forniscono utili \textbf{esempi negativi} per testare se il modello.
-\end{block}
-
-\begin{block}{Near minimal pairs}
-Poiché condividono la stessa forma superficiale dei veri NtoN,
-questi distrattori costituiscono \textbf{near minimal pairs}:
-frasi grammaticali, naturali, quasi identiche in superficie,
-ma con \textbf{struttura e significato diversi}.
-\end{block}
-
-\begin{block}{Dataset}
-Nel case study \textbf{456} near minimal pairs
-come distrattori dal corpus.
-\end{block}
-
-\end{frame}
-
-\begin{frame}{Split training test set}
-\begin{block}{Evitare overfitting}
-Max 20 occorrenze per lemma per evitare overfitting e ridurre la sproporzione tra lemmi altamente frequenti e lemmi rari.
-\end{block}
-
-\begin{block}{Controllo della generalizzazione}
-Generazione split casuali di train/test basati sul lemma del nome presente nella costruzione NtoN, in modo che nessun lemma compaia sia nel training set sia nel test set.
-\end{block}
-
-
-\begin{block}{Bilancimento training}
-Poiché il numero di distrattori è significativamente inferiore rispetto alle istanze della costruzione, per bilanciare le categorie nel training set è stato utilizzato l’80\% dei distrattori, abbinato allo stesso numero di costruzioni. Il test set è quindi composto dal restante 20\% dei distrattori, insieme a tutte le costruzioni eccedenti quelle usate per il training.
-\end{block}
-
-\end{frame}
-
-
-
-
 \section{Task 1: Identificazione}
 
-\begin{frame}{Dataset}
-  \begin{block}{Esempio di blocco}
-    Testo del blocco esplicativo.
+\begin{frame}{Task 1: Identificazione}
+  \begin{block}{Definizione del task}
+  Distinguere le istanze autentiche della costruzione NtoN dagli esempi autentici del corrispondente pattern distrattore.
+  \end{block}
+\end{frame}
+
+\begin{frame}{Base-line}
+  \begin{block}{Control classifier}
+Le etichette vengono randomizzate e assegnate in modo deterministico al word type.
+
+Le performance dovrebbero attestrarsi near chance.
+  \end{block}
+  \begin{block}{Non-contextual baseline (GloVe)}
+Valuta la performance basata solo su informazioni lessicali, senza contesto.
+
+Dovrebbero attndersi, in virtù dei campi semnatici ricorrenti nella costruzione NtoN come espressioni temporali e parti del corpo, performance non trascurabili.
+  \end{block}
+\end{frame}
+
+\begin{frame}{A cosa serve la baseline?}
+  \begin{block}{Control classifier}
+Informa sullla bontà del classificatore
+  \end{block}
+  \begin{block}{Non-contextual baseline (GloVe)}
+  Tutto ciò che supera questa performance potrebbe essere attribuito alle informazioni aggiuntive catturate da BERT attraverso il
+  significato contestuale.
   \end{block}
 \end{frame}
 

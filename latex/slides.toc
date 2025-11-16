@@ -2,7 +2,8 @@
 \babel@toc {italian}{}\relax 
 \beamer@sectionintoc {1}{La costruzione NPN}{3}{0}{1}
 \beamer@sectionintoc {2}{Il Dataset}{7}{0}{2}
-\beamer@sectionintoc {3}{BERT, modello di encoder}{10}{0}{3}
-\beamer@sectionintoc {4}{Task 1: Identificazione}{16}{0}{4}
-\beamer@sectionintoc {5}{Task 2: Identificazione (perturbando l'ordine delle parole)}{18}{0}{5}
-\beamer@sectionintoc {6}{Task 3: Disambiguazione semantica}{20}{0}{6}
+\beamer@sectionintoc {3}{Training e Test set}{10}{0}{3}
+\beamer@sectionintoc {4}{BERT, modello di encoder}{13}{0}{4}
+\beamer@sectionintoc {5}{Task 1: Identificazione}{17}{0}{5}
+\beamer@sectionintoc {6}{Task 2: Identificazione (perturbando l'ordine delle parole)}{21}{0}{6}
+\beamer@sectionintoc {7}{Task 3: Disambiguazione semantica}{23}{0}{7}
