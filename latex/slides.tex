@@ -1,10 +1,27 @@
 \documentclass{beamer}
 
+% Per grafica, immagini, figure
+\usepackage{graphicx}
+
+% Per simboli matematici, frecce, ecc.
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Per gestione delle colonne
+\usepackage{multicol}
+
+% Per migliorare lo spacing
+\usepackage{ragged2e}
+
+
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[italian]{babel}
 \usepackage{graphicx}
 \usepackage{tcolorbox}
+\usepackage{tikz}           % Per disegnare blocchi, frecce, diagrammi
+\usetikzlibrary{positioning,fit,arrows.meta}
 
 \usetheme{metropolis} % Tema moderno e minimale
 
@@ -68,6 +85,300 @@ Significati delle costruzioni NPN istanziate da \textit{to}
   \end{block}
 
 \end{frame}
+
+
+\begin{frame}{Obbietivo dello studio}
+
+Valutare se i LLMs sono in grado di riconoscere l'unità fondamentale della Construction Grammar: la costruzione.
+
+\end{frame}
+
+
+\section{Accedere alla conoscenza di un LLM}
+\begin{frame}{LLMs come Black Box}
+
+
+I Large Language Models ricevono input e producono output, \\[2pt]
+\textbf{ma il loro funzionamento interno rimane in gran parte opaco}.
+
+
+\vspace{4mm}
+
+\begin{itemize}
+    \item \textbf{Non osservabile}: non possiamo seguire direttamente come le reti trasformano l’informazione.
+    \item \textbf{Non interpretabile}: le rappresentazioni interne sono vettori numerici di grandi dimensioni.
+\end{itemize}
+
+\vspace{4mm}
+
+\begin{alertblock}{Domande chiave}
+\begin{itemize}
+    \item Quali \textbf{rappresentazioni interne} costruiscono?
+    \item Quali \textbf{pattern linguistici} apprendono?
+    \item In che modo \textbf{utilizzano} queste conoscenze nei task?
+\end{itemize}
+\end{alertblock}
+
+\end{frame}
+
+\begin{frame}{Struttura del Transformer}
+
+\begin{center}
+\textbf{Self-Attention} \\[2mm]
+\small Consente al modello di pesare dinamicamente tutte le parti dell’input.
+\end{center}
+
+\vspace{4mm}
+
+\begin{columns}[t]
+
+% ENCODER
+\column{0.45\textwidth}
+\begin{block}{\centering \large Encoder}
+\begin{itemize}
+    \item Converte il testo di input in
+    \textbf{rappresentazioni vettoriali contestuali}.
+\end{itemize}
+\end{block}
+
+\column{0.10\textwidth}
+\centering
+\Huge $\Rightarrow$
+
+% DECODER
+\column{0.45\textwidth}
+\begin{block}{\centering \large Decoder}
+\begin{itemize}
+    \item Genera testo \textbf{un token alla volta}.
+\end{itemize}
+\end{block}
+
+\end{columns}
+
+\vspace{4mm}
+
+\begin{alertblock}{Tipologie di modelli Transformer}
+\textbf{Encoder-only}: BERT, RoBERTa 
+\textbf{Decoder-only}: GPT, LLaMA 
+\textbf{Encoder–decoder}: T5, BART
+\end{alertblock}
+
+
+\end{frame}
+
+
+\begin{frame}{BERT: modello encoder-only}
+
+\begin{block}{BERT e la costruzione NPN}
+Il case study del paper indaga la conoscenza che BERT possiede
+della costruzione \textbf{NPN} (Noun–Prep–Noun).
+\end{block}
+
+\vspace{4mm}
+
+\begin{block}{Obiettivi di pre-training}
+BERT viene addestrato su due task fondamentali:
+\begin{itemize}
+    \item \textbf{Masked Language Modeling (MLM)}: si maschera un token e il modello deve
+          \textbf{ricostruirlo a partire dal contesto}.
+    \item \textbf{Next Sentence Prediction (NSP)}: il modello deve
+          \textbf{capire se due frasi sono consecutive} nel testo originale.
+\end{itemize}
+\end{block}
+
+\vspace{4mm}
+
+
+\end{frame}
+
+\begin{frame}{Punto chiave: rappresentazioni profonde}
+\begin{columns}[t] % allinea in alto
+  % Colonna testo
+  \column{0.5\textwidth}
+  \begin{alertblock}{Punto chiave}
+  Lo scopo non è risolvere i task in sé,  
+  ma \textbf{insegnare al modello a costruire rappresentazioni linguistiche profonde},  
+  cioè \textbf{vettori contestuali} ricchi di informazione sintattica e semantica.
+  \end{alertblock}
+
+  % Colonna grafica
+  \column{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=1.1\textwidth]{images/MLM.png} % icona o diagramma
+    \\[2mm]
+    \small Masked language modeling
+  \end{center}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Che cos'è un vettore?}
+\centering
+\begin{tikzpicture}[node distance=0.6cm, every node/.style={align=center, font=\small}]
+  % Blocchi principali
+  \node (token) [draw, rounded corners, fill=blue!40, minimum width=3cm, minimum height=1cm, thick] {Token};
+  
+  \node (vector) [draw, rounded corners, fill=green!40, below=of token, minimum width=3cm, minimum height=1cm, thick] {Trasformazione in vettore \\ (insieme di numeri)};
+  
+  \node (context) [draw, rounded corners, fill=yellow!40, below=of vector, minimum width=3cm, minimum height=1cm, thick] {Definito distribuzionalmente \\ dalle parole nel contesto};
+  
+  % Blocchi diramati
+  \node (relation) [draw, rounded corners, fill=red!60, text=white, minimum width=2.5cm, minimum height=1.5cm, below left=0.5cm and -2cm of context, thick] {Rappresentazione cattura \\ relazioni semantiche e sintattiche};
+  
+  \node (space) [draw, rounded corners, fill=orange!60, text=white, minimum width=2.5cm, minimum height=1.5cm, below right=0.5cm and -2.25cm of context, thick] {Spazio n-dimensionale \\ (n dimensioni = dimensione del vettore)};
+  
+  % Frecce
+  \draw[->, thick] (token) -- (vector);
+  \draw[->, thick] (vector) -- (context);
+  \draw[->, thick] (context) -- (relation);
+  \draw[->, thick] (context) -- (space);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Rappresentazione vettoriale}
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/static.png}
+    \\[2mm]
+    \small Embedding statici
+\end{center}
+\end{frame}
+
+\begin{frame}{Rappresentazione vettoriale in BERT}
+
+Fasi principali:
+
+\begin{enumerate}
+    \item \textbf{Tokenizzazione:} ogni token viene convertito in un vettore iniziale.
+
+    \item \textbf{Previsione [MASK]:} cattura informazione linguistica contestuale, propagata attraverso i layer.
+
+    % Riquadro vettore layer
+    \begin{center}
+    \begin{tcolorbox}[colback=green!10, colframe=green!50!black, rounded corners, boxrule=0.8pt, width=1\textwidth]
+        Layer dopo layer, il vettore acquisisce informazioni sempre più accurate.
+    \end{tcolorbox}
+    \end{center}
+
+    \item \textbf{Aggiornamento pesi:} predizione su [MASK] \\
+    Confronto con token corretto (LOSS)
+    \\ 
+    Aggiustamento dei parametri (BACKPROPAGATION).
+
+    % Riquadro vettori finali
+\begin{center}
+\begin{tcolorbox}[
+    colback=red!10, 
+    colframe=red!50!black, 
+    rounded corners, 
+    boxrule=0.8pt, 
+    width=0.95\textwidth, % rimpicciolisce la larghezza
+    boxsep=2mm,          % padding interno ridotto
+    fontupper=\small      % testo più piccolo
+]
+    Vettori numerici (768d) risultanti dall'addestramento di BERT
+\end{tcolorbox}
+\end{center}
+
+    \item Risoluzione del task: i vettori contestuali possono essere usati per classificazione, NER, question answering, ecc.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{BERT: embedding contestuali}
+
+\begin{center}
+\begin{tcolorbox}[
+    colback=blue!10, 
+    colframe=blue!50!black, 
+    rounded corners, 
+    boxrule=1pt, 
+    width=0.85\textwidth, 
+    boxsep=1.5mm,
+    fontupper=\small
+]
+La risoluzione del task \textbf{Masked Language Modeling (MLM)} disegna lo \textbf{spazio vettoriale}.
+\end{tcolorbox}
+\end{center}
+
+\vspace{3mm}
+
+\begin{itemize}
+    \item \textbf{Rappresentazione contestuale}: ogni token ha un vettore diverso a seconda della frase in cui compare.
+    \item \textbf{Contesto bidirezionale}: il modello vede tutti i token della frase e aggiorna gli embedding a ogni layer.
+\end{itemize}
+
+\end{frame}
+
+\section{Probing}
+
+\begin{frame}{Probing: accesso alle informazioni linguistiche}
+Vettori numerici complessi $\rightarrow$ non interpretabili
+
+\begin{block}{Probing}
+  Interrogare i \textbf{vettori} per verificare se contengono determinate conoscenze linguistiche
+\end{block}
+
+\begin{tikzpicture}
+  % Draw a rectangle from (0,0) to (4,2)
+  \node (rect1) [draw, rectangle, rounded corners, fill=blue!20, minimum width=2cm, minimum height=1cm, align=center] 
+       {Estrarre embedding\\dal modello};
+
+  % Second rectangle below the first
+  \node (rect2) [draw, rectangle, rounded corners, fill=green!20, minimum width=2cm, minimum height=1cm, align=center, below=of rect1] 
+       {Dataset\\annotato};
+
+  \draw[thick] (0,-1.1) circle (2.4cm);
+
+  \draw[->, thick] (2.7,-1.1) -- (4.2, -1.1);
+
+  \node (class) [draw, rounded corners, minimum width=2cm, minimum height=1cm, align=center] 
+       at (5.4,-1.1) {\footnotesize Classificatore\\\footnotesize semplice};
+
+  % Optional: add a label at the center
+  \node at (0,-1.1) {$+$};
+  
+
+  \draw[->, thick] (6.5, -0.5) -- (7,0.3) node[above right] {LR};
+  \draw[->, thick] (6.5, -1.7) -- (7,-2.5) node[below right] {MLP};
+
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Differenze rispetto al fine-tuning}
+\centering
+\begin{tikzpicture}[every node/.style={align=center}]
+  % Box principale
+  \node (head) [draw=blue!50!black, fill=blue!10, rounded corners, minimum width=8cm, minimum height=1cm] 
+    {$\neq$ Classification head nel fine-tuning};
+
+  % Box secondari sotto
+  \node (left) [draw, rounded corners, fill=green!10, minimum width=3.5cm, minimum height=1cm, below left=2cm and -2cm of head] {Obbiettivo migliorare \\ le performance non \\
+  nterrogare il modelo};
+  \node (right) [draw, rounded corners, fill=green!10, minimum width=3.5cm, minimum height=1cm, below right=2cm and -2cm of head] {Modifica i pesi \\ BACKPROPAGATION};
+
+  % Frecce che collegano il box principale a quelli sotto
+  \draw[->, thick] (head.south) -- (left.north);
+  \draw[->, thick] (head.south) -- (right.north);
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Interpretare le performance del classificatore}
+Per concludere che le buone performance del classificatore riflettono realmente l’informazione linguistica contenuta nei vettori, è necessario:  
+
+\begin{itemize}
+  \item Analizzare le performance degli \textbf{embedding a tutti i layer} del modello. $\rightarrow$ Ci attendiamo incremento e differenza.
+  \item Stabilire una \textbf{baseline significativa} per confronto.
+  \item Confrontare i risultati con un \textbf{control classifier}.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
 
 
 \section{Il Dataset}
@@ -144,54 +455,6 @@ Poiché il numero di distrattori è significativamente inferiore rispetto alle i
 \end{frame}
 
 
-\section{BERT, modello di encoder}
-
-\begin{frame}{Embedding e trasformazioni del testo}
-
-\begin{block}{Embedding}
-Le parole e le frasi vengono trasformate in \textbf{vettori numerici} chiamati embedding. 
-Questi vettori catturano somiglianze semantiche e relazioni tra parole, permettendo al modello di “comprendere” il testo.
-\end{block}
-
-\begin{block}{Perché trasformare il testo}
-Il testo deve diventare numerico per essere elaborato dai modelli. 
-Trasformare significa codificare ogni parola in uno spazio continuo dove vicinanza = somiglianza.
-\end{block}
-
-\end{frame}
-
-\begin{frame}{Transformer e Encoder}
-
-\begin{block}{Transformer}
-Modello basato su \textbf{self-attention}: ogni parola osserva tutte le altre per capire il contesto. 
-Non usa ricorrenza e permette di gestire sequenze lunghe in parallelo.
-\end{block}
-
-\begin{block}{Encoder}
-L’encoder produce rappresentazioni contestuali di ogni parola, che riflettono sia il significato intrinseco sia le relazioni con le altre parole nel testo.
-\end{block}
-
-\end{frame}
-
-\begin{frame}{BERT: bidirezionale e contestuale}
-
-\begin{block}{Cos'è BERT}
-BERT è un Transformer \textbf{solo encoder}, che legge il contesto a sinistra e a destra di ogni parola.
-Produce embedding contestuali che catturano significato, struttura sintattica e relazioni tra parole.
-\end{block}
-
-\begin{block}{Addestramento}
-- \textbf{Masked Language Modeling}: predire token mascherati.\\
-- \textbf{Next Sentence Prediction}: capire se due frasi sono in sequenza.
-\end{block}
-
-\begin{block}{Perché usarlo}
-Le rappresentazioni di BERT possono essere adattate a molti task NLP: classificazione, NER, question answering. 
-Per questo caso studio, mostrano come la semantica delle costruzioni è rappresentata.
-\end{block}
-
-\end{frame}
-
 \section{Task 1: Identificazione}
 
 \begin{frame}{Task 1: Identificazione}
@@ -243,7 +506,7 @@ Informa sullla bontà del classificatore
 
 \end{frame}
 
-\begin{frame}{Experiment 2: Perturbing Word Order}
+\begin{frame}{Task 2: Perturbing Word Order}
 
 \textbf{Metodo}
 \begin{itemize}
