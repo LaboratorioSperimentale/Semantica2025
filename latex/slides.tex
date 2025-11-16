@@ -225,18 +225,89 @@ Informa sullla bontà del classificatore
 
 \section{Task 2: Identificazione (perturbando l'ordine delle parole)}
 
-\begin{frame}{Paper S}
-  \begin{block}{Esempio di blocco}
-    Testo del blocco esplicativo.
-  \end{block}
+
+\begin{frame}{Task 2: Perturbing Word Order}
+\textbf{Obiettivo}
+\begin{itemize}
+    \item Testare la \textbf{robustezza} del classificatore BERT-based.
+    \item Verificare se distingue la \textbf{vera costruzione NtoN} da
+    frasi con ordine delle parole \textbf{alterato artificialmente}.
+\end{itemize}
+
+\textbf{Idea di base}
+\begin{itemize}
+    \item Se il modello si basa troppo su \textbf{indizi lessicali},
+    classificherà come positive anche frasi non-NtoN con gli stessi nomi.
+    \item Se è sensibile al \textbf{pattern N + to + N}, occorrenze perturbate da reali istanze della costrzione.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Experiment 2: Perturbing Word Order}
+
+\textbf{Metodo}
+\begin{itemize}
+    \item Non viene riaddestrato il probe: vede solo N + to + N corretti.
+    \item Viene manipolato il test set creando 4 ordini delle parole perturbati.
+\end{itemize}
+
+\textbf{Tipi di perturbazioni}
+\begin{itemize}
+    \item \textbf{PNN}: to + N + N
+    \item \textbf{PN}: to + N
+    \item \textbf{NP}: N + to
+    \item \textbf{NNP}: N + N + to
+\end{itemize}
+
+\textbf{Scopo finale}
+\begin{itemize}
+    \item Valutare se il classificatore è sensibile alla \textbf{forma} della costruzione.
+\end{itemize}
+
 \end{frame}
 
 \section{Task 3: Disambiguazione semantica}
 
-\begin{frame}{Paper S}
-  \begin{block}{Esempio di blocco}
-    Testo del blocco esplicativo.
-  \end{block}
+\begin{frame}{Task 3: Disambiguazione semantica}
+\textbf{Obiettivo:} Analizzare i sottotipi semantici della costruzione NtoN.
+
+\begin{itemize}
+    \item La performance del classificatore è alta nel distinguere NtoN da pattern simili.
+    \item La costruzione NtoN è \textbf{ambigua} e può avere significati diversi a seconda del contesto.
+    \item Due significati principali:
+    \begin{itemize}
+        \item \textbf{SUCCESSIONE} 
+        \item \textbf{GIUSTAPPOSIZIONE}
+    \end{itemize}
+\end{itemize}
 \end{frame}
+
+\begin{frame}{Task 3: Disambiguazione semantica}
+\textbf{Caratteristiche dei sottotipi:}
+
+\begin{itemize}
+    \item \textbf{SUCCESSIONE}: frequente con nomi spaziotemporali (es. giorno per giorno, costa a costa)
+    \item \textbf{GIUSTAPPOSIZIONE}: frequente con parti del corpo o esseri umani (es. faccia a faccia, amico ad amico)
+    \item Il significato del sostantivo non è determinante: alcune occorrenze assumono il significato meno comune a seconda del contesto.
+    \item Esistono sostantivi rari per cui non è chiaro quale sottotipo sia più comune.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Task 3: Disambiguazione semantica}
+\textbf{Metodologia:}
+
+\begin{itemize}
+    \item Classificatore per distinguere i sottotipi semantici: 
+        \begin{itemize}
+            \item SUCCESSIONE
+            \item GIUSTAPPOSIZIONE
+            \item Non-esempi (pattern distrattori)
+        \end{itemize}
+    \item Classificazione a 3 classi.
+    \item Classificatori di controllo: etichette casuali assegnate a ciascun lemma (Hewitt \& Liang, 2019)
+    \item Se le probe sono selettive, i classificatori di controllo dovrebbero ottenere ~33\% di accuratezza.
+\end{itemize}
+\end{frame}
+
 
 \end{document}

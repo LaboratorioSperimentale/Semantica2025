@@ -6,4 +6,4 @@
 \beamer@sectionintoc {4}{BERT, modello di encoder}{13}{0}{4}
 \beamer@sectionintoc {5}{Task 1: Identificazione}{17}{0}{5}
 \beamer@sectionintoc {6}{Task 2: Identificazione (perturbando l'ordine delle parole)}{21}{0}{6}
-\beamer@sectionintoc {7}{Task 3: Disambiguazione semantica}{23}{0}{7}
+\beamer@sectionintoc {7}{Task 3: Disambiguazione semantica}{24}{0}{7}
