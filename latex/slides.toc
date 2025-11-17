@@ -2,9 +2,9 @@
 \babel@toc {italian}{}\relax 
 \beamer@sectionintoc {1}{La costruzione NPN}{3}{0}{1}
 \beamer@sectionintoc {2}{Accedere alla conoscenza di un LLM}{8}{0}{2}
-\beamer@sectionintoc {3}{Probing}{17}{0}{3}
-\beamer@sectionintoc {4}{Il Dataset}{21}{0}{4}
-\beamer@sectionintoc {5}{Training e Test set}{24}{0}{5}
-\beamer@sectionintoc {6}{Task 1: Identificazione}{27}{0}{6}
-\beamer@sectionintoc {7}{Task 2: Identificazione (perturbando l'ordine delle parole)}{31}{0}{7}
-\beamer@sectionintoc {8}{Task 3: Disambiguazione semantica}{34}{0}{8}
+\beamer@sectionintoc {3}{Probing}{19}{0}{3}
+\beamer@sectionintoc {4}{Il Dataset}{23}{0}{4}
+\beamer@sectionintoc {5}{Training e Test set}{26}{0}{5}
+\beamer@sectionintoc {6}{Task 1: Identificazione}{29}{0}{6}
+\beamer@sectionintoc {7}{Task 2: Identificazione (perturbando l'ordine delle parole)}{33}{0}{7}
+\beamer@sectionintoc {8}{Task 3: Disambiguazione semantica}{36}{0}{8}
