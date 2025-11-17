@@ -7781,7 +7781,17 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Cosa-serve?">Cosa serve?<a class="anchor-link" href="#Cosa-serve?">¶</a></h3><table>
+<h3 id="Cosa-serve?">Cosa serve?<a class="anchor-link" href="#Cosa-serve?">¶</a></h3>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c067aed5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
 <thead>
 <tr>
 <th>Step</th>
@@ -7809,12 +7819,60 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <td>Una serie di frasi <code>contesto sinistro - NtoN - contesto destro</code></td>
 <td>Una serie di frasi <code>tok_sx_1 ... tok_sx_n - NtoN - tok_dx_1 ... tok_dx_m</code>,  con <code>tok_sx_n</code> diverso da <code>from</code> e <code>n+m &gt; 1</code></td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=185e1356">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tools</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>Annotare ogni istanza del dataset come <code>distractor</code> o uno dei tipi semantici della costruzione</td>
 <td>Guidelines per l'annotazione, Excel o software simile</td>
 <td>Una serie di frasi <code>tok_sx_1 ... tok_sx_n - NtoN - tok_dx_1 ... tok_dx_m</code>,  con <code>tok_sx_n</code> diverso da <code>from</code> e <code>n+m &gt; 1</code></td>
 <td>Per ogni frase di input, un valore che codifica se l'item è un distractor, o la classe semantica della costruzione, o se la frase è da eliminare, e il lemma del nome costruzione</td>
 </tr>
+<tr>
+<td>Calcolare Inter annoatator agreement</td>
+<td>Script in Python, formule per calcolare l'agreement</td>
+<td>Per ogni item del dataset, una serie di valori che codificano se l'item è un <code>distractor</code>, o la classe semantica della costruzione</td>
+<td>Un numero (coefficiente di accordo) per etichetta di annotazione</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=395cee29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tools</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>estrarre da BERT-base-cased 12 vettori corrispondenti alla testa della costruzione</td>
 <td>Libreria HuggingFace</td>
@@ -7827,6 +7885,27 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <td>Dataset</td>
 <td>file contenente i vettori di GloVe per i lemmi presenti nel dataset</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a9bdbdfe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tools</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>Sampling dei lemmi troppo presenti</td>
 <td></td>
@@ -7839,6 +7918,27 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <td></td>
 <td></td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b07fbecc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Tools</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>Training del classificatore (regressione lineare)</td>
 <td></td>
