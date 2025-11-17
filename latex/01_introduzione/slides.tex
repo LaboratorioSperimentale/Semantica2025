@@ -348,7 +348,7 @@ La risoluzione del task \textbf{Masked Language Modeling (MLM)} disegna lo \text
 Vettori numerici complessi $\rightarrow$ non interpretabili
 
 \begin{block}{Probing}
-  Interrogare i \textbf{vettori} per verificare se contengono determinate conoscenze linguistiche
+  Esaminare i \textbf{vettori} per analizzare se contengono determinate conoscenze linguistiche
 \end{block}
 
 \begin{tikzpicture}
@@ -376,6 +376,47 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 
 \end{tikzpicture}
 \end{frame}
+
+\begin{frame}{Che cos'è un classificatore?}
+
+\textbf{Definizione}: un classificatore è un modello che assegna 
+un'istanza (nel nostro caso un embedding contestuale) 
+a una \textbf{classe} tra un insieme finito di categorie.
+
+
+
+\textbf{Obiettivo}:
+\[
+f:\mathbf{x} \mapsto y \in \{1, \dots, K\}
+\]
+
+\textbf{Fase di Apprendimento (Training)} \\
+Il modello viene addestrato su un \textbf{training set}, 
+cioè esempi etichettati:
+\[
+(\mathbf{x}_i, y_i)
+\]
+per stimare i parametri che distinguono le classi.
+
+
+
+\textbf{Fase di Valutazione (Test)} \\
+Un \textbf{test set} separato misura quanto il modello
+generalizza su dati mai visti.
+
+
+\end{frame}
+
+
+\begin{frame}{Logistic Regression}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/LR.png}
+    \\[2mm]
+    \small Classificatore
+\end{center}
+\end{frame}
+
 
 
 \begin{frame}{Differenze rispetto al fine-tuning}
@@ -418,8 +459,8 @@ Per concludere che le buone performance del classificatore riflettono realmente 
 
 \begin{frame}{Il Dataset}
   \begin{itemize}
-    \item estrazione da COCA
-    \item Eliminazione dei casi PNPN
+    \item Estrazione da COCA (Corpus of Contemporary American English)
+    \item Eliminazione dei casi PNPN 
     \item Identificazione dei distrattori
     \item Annotazione per tutte le istanze delle etichette semantiche
   \end{itemize}
@@ -444,7 +485,6 @@ Per concludere che le buone performance del classificatore riflettono realmente 
 
 \end{frame}
 
-\section{Training e Test set}
 
 \begin{frame}{Near Minimal Pairs e Distrattori}
 
@@ -471,6 +511,8 @@ come distrattori dal corpus.
 
 \end{frame}
 
+\section{Training e Test set}
+
 \begin{frame}{Split training test set}
 \begin{block}{Evitare overfitting}
 Max 20 occorrenze per lemma per evitare overfitting e ridurre la sproporzione tra lemmi altamente frequenti e lemmi rari.
@@ -492,31 +534,43 @@ Poiché il numero di distrattori è significativamente inferiore rispetto alle i
 
 \begin{frame}{Task 1: Identificazione}
   \begin{block}{Definizione del task}
-  Distinguere le istanze autentiche della costruzione NtoN dagli esempi autentici del corrispondente pattern distrattore.
+  Distinguere le istanze autentiche della costruzione NtoN dagli esempi negativi del corrispondente pattern distrattore.
   \end{block}
 \end{frame}
 
 \begin{frame}{Base-line}
   \begin{block}{Control classifier}
-Le etichette vengono randomizzate e assegnate in modo deterministico al word type.
+Le etichette vengono randomizzate e assegnate in modo deterministico al \textbf{word type}.
 
 Le performance dovrebbero attestrarsi near chance.
   \end{block}
   \begin{block}{Non-contextual baseline (GloVe)}
-Valuta la performance basata solo su informazioni lessicali, senza contesto.
+Valuta la performance basata solo su informazioni lessicali, senza contesto (embedding statici).
 
-Dovrebbero attndersi, in virtù dei campi semnatici ricorrenti nella costruzione NtoN come espressioni temporali e parti del corpo, performance non trascurabili.
+Dovrebbero attendersi, in virtù dei campi semnatici ricorrenti nella costruzione NtoN come espressioni temporali e parti del corpo, performance non trascurabili.
   \end{block}
 \end{frame}
 
 \begin{frame}{A cosa serve la baseline?}
   \begin{block}{Control classifier}
-Informa sullla bontà del classificatore
+Informa sullla bontà del classificatore, verificare che il classificatore non sia troppo potente.
   \end{block}
   \begin{block}{Non-contextual baseline (GloVe)}
   Tutto ciò che supera questa performance potrebbe essere attribuito alle informazioni aggiuntive catturate da BERT attraverso il
   significato contestuale.
   \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Task 1: Identificazione}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{images/task1.png}
+    \\[2mm]
+    \small This shows that overall, the probing classifier seems to be picking up on some sort of information in BERT which can reliably distinguish the NtoN construction from its near minimal pair NtoN distractor counterparts, beyond what is possible through lexical semantic clues alone. 
+\end{center}
 \end{frame}
 
 \section{Task 2: Identificazione (perturbando l'ordine delle parole)}
