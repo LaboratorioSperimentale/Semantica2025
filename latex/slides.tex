@@ -13,6 +13,12 @@
 % Per migliorare lo spacing
 \usepackage{ragged2e}
 
+\usepackage[backend=bibtex,style=authoryear]{biblatex}
+\setbeamertemplate{bibliography item}[text]
+\renewcommand*{\bibfont}{\scriptsize}
+
+\newcommand*{\mycite}[1]{\citetitle{#1} (\cite{#1})}
+
 
 
 \usepackage[utf8]{inputenc}
@@ -24,6 +30,8 @@
 \usetikzlibrary{positioning,fit,arrows.meta}
 
 \usetheme{metropolis} % Tema moderno e minimale
+
+\addbibresource{references.bib}
 
 
 \title{Identificazione e disambiguazione della costruzione NPN con BERT}
@@ -45,7 +53,8 @@
 
 \begin{frame}{Cos'è la costruzione NPN}
   La costruzione NPN è stata ampiamente studiata in inglese da una prospettiva costruzionista,
-  in particolare da Jackendoff (2008) e Sommerer \& Baumann (2021).
+  in particolare da \cite{jackendoff2008construction} %Jackendoff (2008)
+  e \cite{sommerer2021absent} %Sommerer \& Baumann (2021).
 
   \begin{tcolorbox}[colback=white, colframe=black, arc=4mm, boxrule=0.8pt, center title, title=Construction Schema]
     \[
@@ -62,7 +71,7 @@
 
   \begin{exampleblock}{Esempi}
     \begin{itemize}
-      \item \textit{I need you to get this \textbf{word for word.}} 
+      \item \textit{I need you to get this \textbf{word for word.}}
       \\
       \hfill (modificatore avverbiale)
       \item \textit{There is a rebellious quality to your \textbf{day to day}
@@ -77,13 +86,13 @@ responses which have not gone unnoticed.} \hfill (modificatore nominale)
 Significati delle costruzioni NPN istanziate da \textit{to}
 
   \begin{block}{SUCCESSION}
-Indica una \textbf{successione o iterazione}, 
+Indica una \textbf{successione o iterazione},
 spesso temporali o spaziali.
   \end{block}
 
   \begin{block}{JUXTAPOSITION}
-Indica una \textbf{giustapposizione o confronto}, 
-spesso persone o oggetti. 
+Indica una \textbf{giustapposizione o confronto},
+spesso persone o oggetti.
   \end{block}
 
 \end{frame}
@@ -91,8 +100,8 @@ spesso persone o oggetti.
 
 \begin{frame}{Obbietivo dello studio}
 
-L'obiettivo dello studio è valutare se i Large Language Models, come BERT, siano in grado di rappresentare, almeno in parte, 
-l'unità fondamentale della \textbf{Construction Grammar}: la \textbf{costruzione}.  
+L'obiettivo dello studio è valutare se i Large Language Models, come BERT, siano in grado di rappresentare, almeno in parte,
+l'unità fondamentale della \textbf{Construction Grammar}: la \textbf{costruzione}.
 
 In particolare, il case study si concentra sulla costruzione inglese \textbf{NPN} instanziata da \textit{to}, scelta per la sua \textbf{polisemia} e i molteplici significati contestuali.
 
@@ -165,8 +174,8 @@ I Large Language Models ricevono input e producono output, \\[2pt]
 \vspace{4mm}
 
 \begin{alertblock}{Tipologie di modelli Transformer}
-\textbf{Encoder-only}: BERT, RoBERTa 
-\textbf{Decoder-only}: GPT, LLaMA 
+\textbf{Encoder-only}: BERT, RoBERTa
+\textbf{Decoder-only}: GPT, LLaMA
 \textbf{Encoder–decoder}: T5, BART
 \end{alertblock}
 
@@ -203,8 +212,8 @@ BERT viene addestrato su due task fondamentali:
   % Colonna testo
   \column{0.5\textwidth}
   \begin{alertblock}{Punto chiave}
-  Lo scopo non è risolvere i task in sé,  
-  ma \textbf{insegnare al modello a costruire rappresentazioni linguistiche profonde},  
+  Lo scopo non è risolvere i task in sé,
+  ma \textbf{insegnare al modello a costruire rappresentazioni linguistiche profonde},
   cioè \textbf{vettori contestuali} ricchi di informazione sintattica e semantica.
   \end{alertblock}
 
@@ -224,16 +233,16 @@ BERT viene addestrato su due task fondamentali:
 \begin{tikzpicture}[node distance=0.6cm, every node/.style={align=center, font=\small}]
   % Blocchi principali
   \node (token) [draw, rounded corners, fill=blue!40, minimum width=3cm, minimum height=1cm, thick] {Token};
-  
+
   \node (vector) [draw, rounded corners, fill=green!40, below=of token, minimum width=3cm, minimum height=1cm, thick] {Trasformazione in vettore \\ (insieme di numeri)};
-  
+
   \node (context) [draw, rounded corners, fill=yellow!40, below=of vector, minimum width=3cm, minimum height=1cm, thick] {Definito distribuzionalmente \\ dalle parole nel contesto};
-  
+
   % Blocchi diramati
   \node (relation) [draw, rounded corners, fill=red!60, text=white, minimum width=2.5cm, minimum height=1.5cm, below left=0.5cm and -2cm of context, thick] {Rappresentazione cattura \\ relazioni semantiche e sintattiche};
-  
+
   \node (space) [draw, rounded corners, fill=orange!60, text=white, minimum width=2.5cm, minimum height=1.5cm, below right=0.5cm and -2.25cm of context, thick] {Spazio n-dimensionale \\ (n dimensioni = dimensione del vettore)};
-  
+
   % Frecce
   \draw[->, thick] (token) -- (vector);
   \draw[->, thick] (vector) -- (context);
@@ -268,16 +277,16 @@ Fasi principali:
 
     \item \textbf{Aggiornamento pesi:} predizione su [MASK] \\
     Confronto con token corretto (LOSS)
-    \\ 
+    \\
     Aggiustamento dei parametri (BACKPROPAGATION).
 
     % Riquadro vettori finali
 \begin{center}
 \begin{tcolorbox}[
-    colback=red!10, 
-    colframe=red!50!black, 
-    rounded corners, 
-    boxrule=0.8pt, 
+    colback=red!10,
+    colframe=red!50!black,
+    rounded corners,
+    boxrule=0.8pt,
     width=0.95\textwidth, % rimpicciolisce la larghezza
     boxsep=2mm,          % padding interno ridotto
     fontupper=\small      % testo più piccolo
@@ -295,11 +304,11 @@ Fasi principali:
 
 \begin{center}
 \begin{tcolorbox}[
-    colback=blue!10, 
-    colframe=blue!50!black, 
-    rounded corners, 
-    boxrule=1pt, 
-    width=0.85\textwidth, 
+    colback=blue!10,
+    colframe=blue!50!black,
+    rounded corners,
+    boxrule=1pt,
+    width=0.85\textwidth,
     boxsep=1.5mm,
     fontupper=\small
 ]
@@ -327,23 +336,23 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 
 \begin{tikzpicture}
   % Draw a rectangle from (0,0) to (4,2)
-  \node (rect1) [draw, rectangle, rounded corners, fill=blue!20, minimum width=2cm, minimum height=1cm, align=center] 
+  \node (rect1) [draw, rectangle, rounded corners, fill=blue!20, minimum width=2cm, minimum height=1cm, align=center]
        {Estrarre embedding\\dal modello};
 
   % Second rectangle below the first
-  \node (rect2) [draw, rectangle, rounded corners, fill=green!20, minimum width=2cm, minimum height=1cm, align=center, below=of rect1] 
+  \node (rect2) [draw, rectangle, rounded corners, fill=green!20, minimum width=2cm, minimum height=1cm, align=center, below=of rect1]
        {Dataset\\annotato};
 
   \draw[thick] (0,-1.1) circle (2.4cm);
 
   \draw[->, thick] (2.7,-1.1) -- (4.2, -1.1);
 
-  \node (class) [draw, rounded corners, minimum width=2cm, minimum height=1cm, align=center] 
+  \node (class) [draw, rounded corners, minimum width=2cm, minimum height=1cm, align=center]
        at (5.4,-1.1) {\footnotesize Classificatore\\\footnotesize semplice};
 
   % Optional: add a label at the center
   \node at (0,-1.1) {$+$};
-  
+
 
   \draw[->, thick] (6.5, -0.5) -- (7,0.3) node[above right] {LR};
   \draw[->, thick] (6.5, -1.7) -- (7,-2.5) node[below right] {MLP};
@@ -356,7 +365,7 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 \centering
 \begin{tikzpicture}[every node/.style={align=center}]
   % Box principale
-  \node (head) [draw=blue!50!black, fill=blue!10, rounded corners, minimum width=8cm, minimum height=1cm] 
+  \node (head) [draw=blue!50!black, fill=blue!10, rounded corners, minimum width=8cm, minimum height=1cm]
     {$\neq$ Classification head nel fine-tuning};
 
   % Box secondari sotto
@@ -372,7 +381,7 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 
 
 \begin{frame}{Interpretare le performance del classificatore}
-Per concludere che le buone performance del classificatore riflettono realmente l’informazione linguistica contenuta nei vettori, è necessario:  
+Per concludere che le buone performance del classificatore riflettono realmente l’informazione linguistica contenuta nei vettori, è necessario:
 
 \begin{itemize}
   \item Analizzare le performance degli \textbf{embedding per tutti i layer} del modello. $\rightarrow$ Ci attendiamo incremento e differenza.
@@ -395,7 +404,7 @@ Per concludere che le buone performance del classificatore riflettono realmente 
     \item estrazione da COCA
     \item Eliminazione dei casi PNPN
     \item Identificazione dei distrattori
-    \item Annotazione per tutte le istanze delle etichette semantiche 
+    \item Annotazione per tutte le istanze delle etichette semantiche
   \end{itemize}
 \end{frame}
 
@@ -546,7 +555,7 @@ Informa sullla bontà del classificatore
     \item La costruzione NtoN è \textbf{ambigua} e può avere significati diversi a seconda del contesto.
     \item Due significati principali:
     \begin{itemize}
-        \item \textbf{SUCCESSIONE} 
+        \item \textbf{SUCCESSIONE}
         \item \textbf{GIUSTAPPOSIZIONE}
     \end{itemize}
 \end{itemize}
@@ -567,7 +576,7 @@ Informa sullla bontà del classificatore
 \textbf{Metodologia:}
 
 \begin{itemize}
-    \item Classificatore per distinguere i sottotipi semantici: 
+    \item Classificatore per distinguere i sottotipi semantici:
         \begin{itemize}
             \item SUCCESSIONE
             \item GIUSTAPPOSIZIONE
