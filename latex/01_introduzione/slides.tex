@@ -588,7 +588,7 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \begin{itemize}
     \item Se il modello si basa troppo su \textbf{indizi lessicali},
     classificherà come positive anche frasi non-NtoN con gli stessi nomi.
-    \item Se è sensibile al \textbf{pattern N + to + N}, occorrenze perturbate da reali istanze della costrzione.
+    \item Se è sensibile al \textbf{pattern N + to + N}, riconoscerà occorrenze perturbate da reali istanze della costrzione.
 \end{itemize}
 
 \end{frame}
@@ -616,18 +616,27 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 
 \end{frame}
 
+
+\begin{frame}{Task 2: Perturbing Word Order}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{images/task2.png}
+    \\[2mm]
+    \small  
+\end{center}
+\end{frame}
+
 \section{Task 3: Disambiguazione semantica}
 
 \begin{frame}{Task 3: Disambiguazione semantica}
-\textbf{Obiettivo:} Analizzare i sottotipi semantici della costruzione NtoN.
+\textbf{Obiettivo:} Analizzare le etichette semantiche della costruzione NtoN.
 
 \begin{itemize}
     \item La performance del classificatore è alta nel distinguere NtoN da pattern simili.
     \item La costruzione NtoN è \textbf{ambigua} e può avere significati diversi a seconda del contesto.
     \item Due significati principali:
     \begin{itemize}
-        \item \textbf{SUCCESSIONE}
-        \item \textbf{GIUSTAPPOSIZIONE}
+        \item \textbf{SUCCESSION}
+        \item \textbf{JUXTAPOSITION}
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -636,8 +645,8 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \textbf{Caratteristiche dei sottotipi:}
 
 \begin{itemize}
-    \item \textbf{SUCCESSIONE}: frequente con nomi spaziotemporali (es. giorno per giorno, costa a costa)
-    \item \textbf{GIUSTAPPOSIZIONE}: frequente con parti del corpo o esseri umani (es. faccia a faccia, amico ad amico)
+    \item \textbf{SUCCESSION}: frequente con nomi spaziotemporali (es. giorno per giorno, costa a costa)
+    \item \textbf{JUXTAPOSITION}: frequente con parti del corpo o esseri umani (es. faccia a faccia, amico ad amico)
     \item Il significato del sostantivo non è determinante: alcune occorrenze assumono il significato meno comune a seconda del contesto.
     \item Esistono sostantivi rari per cui non è chiaro quale sottotipo sia più comune.
 \end{itemize}
@@ -649,15 +658,44 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \begin{itemize}
     \item Classificatore per distinguere i sottotipi semantici:
         \begin{itemize}
-            \item SUCCESSIONE
-            \item GIUSTAPPOSIZIONE
+            \item SUCCESSION
+            \item JUXTAPOSITION
             \item Non-esempi (pattern distrattori)
         \end{itemize}
-    \item Classificazione a 3 classi.
+    \item Baseline = embedding statici
     \item Classificatori di controllo: etichette casuali assegnate a ciascun lemma (Hewitt \& Liang, 2019)
     \item Se le probe sono selettive, i classificatori di controllo dovrebbero ottenere ~33\% di accuratezza.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{ask 3: Disambiguazione semantica}
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/task3.png}
+    \\[2mm]
+    \small  
+\end{center}
+\end{frame}
+
+\begin{frame}{Conclusioni principali}
+\begin{itemize}
+    \item Creato un nuovo dataset di istanze NtoN estratte da COCA.
+    
+    \item Addestrato un \textit{linear probe} per distinguere la costruzione NtoN
+    dai suoi quasi-minimal pair e da versioni con ordine delle parole perturbato.
+    
+    \item I probe mostrano alta accuratezza già nei layer medi di BERT
+    e riconoscono in modo robusto la costruzione anche con pochi esempi di training.
+    
+    \item BERT è in grado di disambiguare i principali sottotipi semantici 
+    (SUCCESSION vs. JUXTAPOSITION)
+    
+    \item Le performance restano stabili anche con forti riduzioni dei dati:
+    indizio che la conoscenza costruzionale è codificata latentamente nel modello.
+    
+    \item Evidenza a supporto dell’ipotesi che gli LLMs acquisiscano informazioni costruzionnali.
+\end{itemize}
+\end{frame}
+
 
 
 \end{document}

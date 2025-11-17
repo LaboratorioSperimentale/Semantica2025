@@ -95,19 +95,25 @@
 \headcommand {\beamer@framepages {37}{37}}
 \headcommand {\slideentry {7}{0}{3}{38/38}{}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\beamer@sectionpages {36}{38}}
-\headcommand {\beamer@subsectionpages {36}{38}}
-\headcommand {\sectionentry {8}{Task 3: Disambiguazione semantica}{39}{Task 3: Disambiguazione semantica}{0}}
-\headcommand {\slideentry {8}{0}{1}{39/39}{}{0}}
+\headcommand {\slideentry {7}{0}{4}{39/39}{}{0}}
 \headcommand {\beamer@framepages {39}{39}}
-\headcommand {\slideentry {8}{0}{2}{40/40}{}{0}}
+\headcommand {\beamer@sectionpages {36}{39}}
+\headcommand {\beamer@subsectionpages {36}{39}}
+\headcommand {\sectionentry {8}{Task 3: Disambiguazione semantica}{40}{Task 3: Disambiguazione semantica}{0}}
+\headcommand {\slideentry {8}{0}{1}{40/40}{}{0}}
 \headcommand {\beamer@framepages {40}{40}}
-\headcommand {\slideentry {8}{0}{3}{41/41}{}{0}}
+\headcommand {\slideentry {8}{0}{2}{41/41}{}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {8}{0}{4}{42/42}{}{0}}
+\headcommand {\slideentry {8}{0}{3}{42/42}{}{0}}
 \headcommand {\beamer@framepages {42}{42}}
-\headcommand {\beamer@partpages {1}{42}}
-\headcommand {\beamer@subsectionpages {39}{42}}
-\headcommand {\beamer@sectionpages {39}{42}}
-\headcommand {\beamer@documentpages {42}}
-\headcommand {\gdef \inserttotalframenumber {34}}
+\headcommand {\slideentry {8}{0}{4}{43/43}{}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {8}{0}{5}{44/44}{}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\slideentry {8}{0}{6}{45/45}{}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\beamer@partpages {1}{45}}
+\headcommand {\beamer@subsectionpages {40}{45}}
+\headcommand {\beamer@sectionpages {40}{45}}
+\headcommand {\beamer@documentpages {45}}
+\headcommand {\gdef \inserttotalframenumber {37}}
