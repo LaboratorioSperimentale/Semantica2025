@@ -98,7 +98,7 @@ spesso persone o oggetti.
 \end{frame}
 
 
-\begin{frame}{Obbietivo dello studio}
+\begin{frame}{Obiettivo dello studio}
 
 L'obiettivo dello studio è valutare se i Large Language Models, come BERT, siano in grado di rappresentare, almeno in parte,
 l'unità fondamentale della \textbf{Construction Grammar}: la \textbf{costruzione}.
@@ -348,7 +348,7 @@ La risoluzione del task \textbf{Masked Language Modeling (MLM)} disegna lo \text
 Vettori numerici complessi $\rightarrow$ non interpretabili
 
 \begin{block}{Probing}
-  Interrogare i \textbf{vettori} per verificare se contengono determinate conoscenze linguistiche
+  Esaminare i \textbf{vettori} per analizzare se contengono determinate conoscenze linguistiche
 \end{block}
 
 \begin{tikzpicture}
@@ -377,6 +377,47 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 \end{tikzpicture}
 \end{frame}
 
+\begin{frame}{Che cos'è un classificatore?}
+
+\textbf{Definizione}: un classificatore è un modello che assegna 
+un'istanza (nel nostro caso un embedding contestuale) 
+a una \textbf{classe} tra un insieme finito di categorie.
+
+
+
+\textbf{Obiettivo}:
+\[
+f:\mathbf{x} \mapsto y \in \{1, \dots, K\}
+\]
+
+\textbf{Fase di Apprendimento (Training)} \\
+Il modello viene addestrato su un \textbf{training set}, 
+cioè esempi etichettati:
+\[
+(\mathbf{x}_i, y_i)
+\]
+per stimare i parametri che distinguono le classi.
+
+
+
+\textbf{Fase di Valutazione (Test)} \\
+Un \textbf{test set} separato misura quanto il modello
+generalizza su dati mai visti.
+
+
+\end{frame}
+
+
+\begin{frame}{Logistic Regression}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/LR.png}
+    \\[2mm]
+    \small Classificatore
+\end{center}
+\end{frame}
+
+
 
 \begin{frame}{Differenze rispetto al fine-tuning}
 \centering
@@ -386,7 +427,7 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
     {$\neq$ Classification head nel fine-tuning};
 
   % Box secondari sotto
-  \node (left) [draw, rounded corners, fill=green!10, minimum width=3.5cm, minimum height=1cm, below left=2cm and -2cm of head] {Obbiettivo migliorare \\ le performance non \\
+  \node (left) [draw, rounded corners, fill=green!10, minimum width=3.5cm, minimum height=1cm, below left=2cm and -2cm of head] {Obiettivo migliorare \\ le performance non \\
   interrogare il modelo};
   \node (right) [draw, rounded corners, fill=green!10, minimum width=3.5cm, minimum height=1cm, below right=2cm and -2cm of head] {Modifica i pesi \\ BACKPROPAGATION};
 
@@ -418,8 +459,8 @@ Per concludere che le buone performance del classificatore riflettono realmente 
 
 \begin{frame}{Il Dataset}
   \begin{itemize}
-    \item estrazione da COCA
-    \item Eliminazione dei casi PNPN
+    \item Estrazione da COCA (Corpus of Contemporary American English)
+    \item Eliminazione dei casi PNPN 
     \item Identificazione dei distrattori
     \item Annotazione per tutte le istanze delle etichette semantiche
   \end{itemize}
@@ -444,7 +485,6 @@ Per concludere che le buone performance del classificatore riflettono realmente 
 
 \end{frame}
 
-\section{Training e Test set}
 
 \begin{frame}{Near Minimal Pairs e Distrattori}
 
@@ -471,6 +511,8 @@ come distrattori dal corpus.
 
 \end{frame}
 
+\section{Training e Test set}
+
 \begin{frame}{Split training test set}
 \begin{block}{Evitare overfitting}
 Max 20 occorrenze per lemma per evitare overfitting e ridurre la sproporzione tra lemmi altamente frequenti e lemmi rari.
@@ -491,32 +533,44 @@ Poiché il numero di distrattori è significativamente inferiore rispetto alle i
 \section{Task 1: Identificazione}
 
 \begin{frame}{Task 1: Identificazione}
-  \begin{block}{Definizione del task}
-  Distinguere le istanze autentiche della costruzione NtoN dagli esempi autentici del corrispondente pattern distrattore.
+  \begin{block}{Obiettivo}
+  Distinguere le istanze autentiche della costruzione NtoN dagli esempi negativi del corrispondente pattern distrattore.
   \end{block}
 \end{frame}
 
 \begin{frame}{Base-line}
   \begin{block}{Control classifier}
-Le etichette vengono randomizzate e assegnate in modo deterministico al word type.
+Le etichette vengono randomizzate e assegnate in modo deterministico al \textbf{word type}.
 
 Le performance dovrebbero attestrarsi near chance.
   \end{block}
   \begin{block}{Non-contextual baseline (GloVe)}
-Valuta la performance basata solo su informazioni lessicali, senza contesto.
+Valuta la performance basata solo su informazioni lessicali, senza contesto (embedding statici).
 
-Dovrebbero attndersi, in virtù dei campi semnatici ricorrenti nella costruzione NtoN come espressioni temporali e parti del corpo, performance non trascurabili.
+Dovrebbero attendersi, in virtù dei campi semnatici ricorrenti nella costruzione NtoN come espressioni temporali e parti del corpo, performance non trascurabili.
   \end{block}
 \end{frame}
 
 \begin{frame}{A cosa serve la baseline?}
   \begin{block}{Control classifier}
-Informa sullla bontà del classificatore
+Informa sullla bontà del classificatore, verificare che il classificatore non sia troppo potente.
   \end{block}
   \begin{block}{Non-contextual baseline (GloVe)}
   Tutto ciò che supera questa performance potrebbe essere attribuito alle informazioni aggiuntive catturate da BERT attraverso il
   significato contestuale.
   \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Task 1: Identificazione}
+
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{images/task1.png}
+    \\[2mm]
+    \small This shows that overall, the probing classifier seems to be picking up on some sort of information in BERT which can reliably distinguish the NtoN construction from its near minimal pair NtoN distractor counterparts, beyond what is possible through lexical semantic clues alone. 
+\end{center}
 \end{frame}
 
 \section{Task 2: Identificazione (perturbando l'ordine delle parole)}
@@ -534,7 +588,7 @@ Informa sullla bontà del classificatore
 \begin{itemize}
     \item Se il modello si basa troppo su \textbf{indizi lessicali},
     classificherà come positive anche frasi non-NtoN con gli stessi nomi.
-    \item Se è sensibile al \textbf{pattern N + to + N}, occorrenze perturbate da reali istanze della costrzione.
+    \item Se è sensibile al \textbf{pattern N + to + N}, riconoscerà occorrenze perturbate da reali istanze della costrzione.
 \end{itemize}
 
 \end{frame}
@@ -562,18 +616,27 @@ Informa sullla bontà del classificatore
 
 \end{frame}
 
+
+\begin{frame}{Task 2: Perturbing Word Order}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{images/task2.png}
+    \\[2mm]
+    \small  
+\end{center}
+\end{frame}
+
 \section{Task 3: Disambiguazione semantica}
 
 \begin{frame}{Task 3: Disambiguazione semantica}
-\textbf{Obiettivo:} Analizzare i sottotipi semantici della costruzione NtoN.
+\textbf{Obiettivo:} Analizzare le etichette semantiche della costruzione NtoN.
 
 \begin{itemize}
     \item La performance del classificatore è alta nel distinguere NtoN da pattern simili.
     \item La costruzione NtoN è \textbf{ambigua} e può avere significati diversi a seconda del contesto.
     \item Due significati principali:
     \begin{itemize}
-        \item \textbf{SUCCESSIONE}
-        \item \textbf{GIUSTAPPOSIZIONE}
+        \item \textbf{SUCCESSION}
+        \item \textbf{JUXTAPOSITION}
     \end{itemize}
 \end{itemize}
 \end{frame}
@@ -582,8 +645,8 @@ Informa sullla bontà del classificatore
 \textbf{Caratteristiche dei sottotipi:}
 
 \begin{itemize}
-    \item \textbf{SUCCESSIONE}: frequente con nomi spaziotemporali (es. giorno per giorno, costa a costa)
-    \item \textbf{GIUSTAPPOSIZIONE}: frequente con parti del corpo o esseri umani (es. faccia a faccia, amico ad amico)
+    \item \textbf{SUCCESSION}: frequente con nomi spaziotemporali (es. giorno per giorno, costa a costa)
+    \item \textbf{JUXTAPOSITION}: frequente con parti del corpo o esseri umani (es. faccia a faccia, amico ad amico)
     \item Il significato del sostantivo non è determinante: alcune occorrenze assumono il significato meno comune a seconda del contesto.
     \item Esistono sostantivi rari per cui non è chiaro quale sottotipo sia più comune.
 \end{itemize}
@@ -595,15 +658,44 @@ Informa sullla bontà del classificatore
 \begin{itemize}
     \item Classificatore per distinguere i sottotipi semantici:
         \begin{itemize}
-            \item SUCCESSIONE
-            \item GIUSTAPPOSIZIONE
+            \item SUCCESSION
+            \item JUXTAPOSITION
             \item Non-esempi (pattern distrattori)
         \end{itemize}
-    \item Classificazione a 3 classi.
+    \item Baseline = embedding statici
     \item Classificatori di controllo: etichette casuali assegnate a ciascun lemma (Hewitt \& Liang, 2019)
     \item Se le probe sono selettive, i classificatori di controllo dovrebbero ottenere ~33\% di accuratezza.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Task 3: Disambiguazione semantica}
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/task3.png}
+    \\[2mm]
+    \small  
+\end{center}
+\end{frame}
+
+\begin{frame}{Conclusioni principali}
+\begin{itemize}
+    \item Creato un nuovo dataset di istanze NtoN estratte da COCA.
+    
+    \item Addestrato un \textit{linear probe} per distinguere la costruzione NtoN
+    dai suoi quasi-minimal pair e da versioni con ordine delle parole perturbato.
+    
+    \item I probe mostrano alta accuratezza già nei layer medi di BERT
+    e riconoscono in modo robusto la costruzione anche con pochi esempi di training.
+    
+    \item BERT è in grado di disambiguare i principali sottotipi semantici 
+    (SUCCESSION vs. JUXTAPOSITION)
+    
+    \item Le performance restano stabili anche con forti riduzioni dei dati:
+    indizio che la conoscenza costruzionale è codificata latentamente nel modello.
+    
+    \item Evidenza a supporto dell’ipotesi che gli LLMs acquisiscano informazioni costruzionnali.
+\end{itemize}
+\end{frame}
+
 
 
 \end{document}
