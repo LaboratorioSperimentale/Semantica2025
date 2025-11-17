@@ -7781,7 +7781,7 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Cosa-serve?">Cosa serve?<a class="anchor-link" href="#Cosa-serve?">¶</a></h3>
+<h2 id="Cosa-serve?">Cosa serve?<a class="anchor-link" href="#Cosa-serve?">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7908,12 +7908,18 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <tbody>
 <tr>
 <td>Sampling dei lemmi troppo presenti</td>
-<td></td>
-<td></td>
-<td></td>
+<td>script python, conteggio numero di type e token della costruzione nel dataset, estrazione di numeri casuali</td>
+<td>Una serie di frasi <code>tok_sx_1 ... tok_sx_n - NtoN - tok_dx_1 ... tok_dx_m</code></td>
+<td>Per ogni N presente nel dataset, al massimo 20 item della forma <code>tok_sx_1 ... tok_sx_n - NtoN - tok_dx_1 ... tok_dx_m</code></td>
 </tr>
 <tr>
 <td>Divisione tra train e test</td>
+<td>generazione di numeri casuali, script python</td>
+<td>Una serie di frasi <code>tok_sx_1 ... tok_sx_n - NtoN - tok_dx_1 ... tok_dx_m</code> con rispettive label semantiche</td>
+<td>Cinque coppie di due file contenenti rispettivamente l'80% e il 20% dei dati, con alcuni constraint</td>
+</tr>
+<tr>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -7941,24 +7947,50 @@ della costruzione (preposizione) più un vettore di GloVe (corrispondente al lem
 <tbody>
 <tr>
 <td>Training del classificatore (regressione lineare)</td>
-<td></td>
-<td></td>
-<td></td>
+<td><code>sklearn.linear_model</code></td>
+<td>Coppia di file <code>train</code> e <code>test</code> con rispettive etichette</td>
+<td>File contenente, per ogni item nel test, la predizione effettuata dal classificatore</td>
 </tr>
 <tr>
 <td>Calcolo media delle run</td>
-<td></td>
-<td></td>
-<td></td>
+<td><code>sklearn.metrics</code>, metriche di valutazione</td>
+<td>Cinque file contenenti le predizioni delle cinque run</td>
+<td>Media di accuracy, precision, recall</td>
 </tr>
 <tr>
 <td>Plot dei risultati</td>
-<td>Matplotlib</td>
-<td></td>
-<td></td>
+<td><code>matplotlib</code></td>
+<td>Accuracy, precision e recall per ogni modello costruito</td>
+<td>grafico riassuntivo</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13df2af2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Su-cosa-ci-concentriamo?">Su cosa ci concentriamo?<a class="anchor-link" href="#Su-cosa-ci-concentriamo?">¶</a></h2><ol>
+<li>Creazione ed annotazione del dataset<ul>
+<li>espressioni regolari</li>
+<li>python base per leggere e scrivere file</li>
+<li>misure di agreement tra annotatori</li>
+</ul>
+</li>
+<li>Importazione di BERT ed estrazione vettori<ul>
+<li>libreria huggingface</li>
+<li>GloVe</li>
+</ul>
+</li>
+<li>Un classificatore LR su BERT e su baseline<ul>
+<li>libreria sklearn</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 </div>
