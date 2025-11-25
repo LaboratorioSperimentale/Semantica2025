@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex slides"] 1763459366.80917 "slides.aux" "slides.bbl" "slides" 1763459374.96344 0
+["bibtex slides"] 1763461115.0184 "slides.aux" "slides.bbl" "slides" 1763461123.15248 0
   "./references.bib" 1763380832.05087 597 4904130a93b6467cd6fd02657ed18d29 ""
-  "./slides-blx.bib" 1763459374.43871 342 73514f57ec3137b3b33c6de31c0e88f7 ""
+  "./slides-blx.bib" 1763461122.60423 342 73514f57ec3137b3b33c6de31c0e88f7 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/biblatex/biblatex.bst" 1711143581 65510 b1f696b0241395385f422f67543c37fd ""
-  "slides.aux" 1763459374.43363 9254 567013cfc0ac12748d6cb02423143f69 "pdflatex"
+  "slides.aux" 1763461122.59908 9254 567013cfc0ac12748d6cb02423143f69 "pdflatex"
   (generated)
   "slides.bbl"
   "slides.blg"
   (rewritten before read)
-["pdflatex"] 1763459371.07056 "/Users/ludovica/Documents/talks/Semantica2025/latex/01_introduzione/slides.tex" "slides.pdf" "slides" 1763459374.9637 0
-  "/Users/ludovica/Documents/talks/Semantica2025/latex/01_introduzione/slides.tex" 1763459357.45283 21588 a2edcf755c216ee5405a4bdd4fa45128 ""
+["pdflatex"] 1763461119.13926 "/Users/ludovica/Documents/talks/Semantica2025/latex/01_introduzione/slides.tex" "slides.pdf" "slides" 1763461123.15277 0
+  "/Users/ludovica/Documents/talks/Semantica2025/latex/01_introduzione/slides.tex" 1763461110.73111 21556 5941d6e73c69c686e6114a6ed8fac077 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -291,13 +291,13 @@
   "images/task2.png" 1763416159.69061 243908 97e846cbf46457c1356df12bb65ad601 ""
   "images/task3.png" 1763416159.69298 329846 a6a7d9c9e98dddb87ba158747937d76a ""
   "images/transformer.png" 1763380832.0507 741063 fd7ab2f815077aa8c28e9fbda11c8aa0 ""
-  "slides.aux" 1763459374.43363 9254 567013cfc0ac12748d6cb02423143f69 "pdflatex"
-  "slides.bbl" 1763459366.99779 2261 cb7c0ec7bf9749e5d48bc2d22d4daf1b "bibtex slides"
-  "slides.nav" 1763459374.43962 5730 016acfb0ddfa9fc1ac1eccb77ebdf9d4 "pdflatex"
-  "slides.out" 1763459374.43744 1431 3fe747e2b8ce674b061c2805e16d2b43 "pdflatex"
-  "slides.run.xml" 1763459374.43955 2546 16f3068ff8ed23a335eb2bed6a48216d "pdflatex"
-  "slides.tex" 1763459357.45283 21588 a2edcf755c216ee5405a4bdd4fa45128 ""
-  "slides.toc" 1763459374.43966 557 a6d06443adca245aea66f1c364d15384 "pdflatex"
+  "slides.aux" 1763461122.59908 9254 567013cfc0ac12748d6cb02423143f69 "pdflatex"
+  "slides.bbl" 1763461115.14616 2261 cb7c0ec7bf9749e5d48bc2d22d4daf1b "bibtex slides"
+  "slides.nav" 1763461122.60519 5730 016acfb0ddfa9fc1ac1eccb77ebdf9d4 "pdflatex"
+  "slides.out" 1763461122.60292 1431 3fe747e2b8ce674b061c2805e16d2b43 "pdflatex"
+  "slides.run.xml" 1763461122.60512 2546 16f3068ff8ed23a335eb2bed6a48216d "pdflatex"
+  "slides.tex" 1763461110.73111 21556 5941d6e73c69c686e6114a6ed8fac077 ""
+  "slides.toc" 1763461122.60523 557 a6d06443adca245aea66f1c364d15384 "pdflatex"
   (generated)
   "slides-blx.bib"
   "slides.aux"
