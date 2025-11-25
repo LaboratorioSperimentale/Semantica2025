@@ -379,8 +379,8 @@ Vettori numerici complessi $\rightarrow$ non interpretabili
 
 \begin{frame}{Che cos'è un classificatore?}
 
-\textbf{Definizione}: un classificatore è un modello che assegna 
-un'istanza (nel nostro caso un embedding contestuale) 
+\textbf{Definizione}: un classificatore è un modello che assegna
+un'istanza (nel nostro caso un embedding contestuale)
 a una \textbf{classe} tra un insieme finito di categorie.
 
 
@@ -391,7 +391,7 @@ f:\mathbf{x} \mapsto y \in \{1, \dots, K\}
 \]
 
 \textbf{Fase di Apprendimento (Training)} \\
-Il modello viene addestrato su un \textbf{training set}, 
+Il modello viene addestrato su un \textbf{training set},
 cioè esempi etichettati:
 \[
 (\mathbf{x}_i, y_i)
@@ -460,7 +460,7 @@ Per concludere che le buone performance del classificatore riflettono realmente 
 \begin{frame}{Il Dataset}
   \begin{itemize}
     \item Estrazione da COCA (Corpus of Contemporary American English)
-    \item Eliminazione dei casi PNPN 
+    \item Eliminazione dei casi PNPN
     \item Identificazione dei distrattori
     \item Annotazione per tutte le istanze delle etichette semantiche
   \end{itemize}
@@ -550,7 +550,7 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \begin{center}
     \includegraphics[width=0.8\textwidth]{images/task1.png}
     \\[2mm]
-    \small This shows that overall, the probing classifier seems to be picking up on some sort of information in BERT which can reliably distinguish the NtoN construction from its near minimal pair NtoN distractor counterparts, beyond what is possible through lexical semantic clues alone. 
+    \small This shows that overall, the probing classifier seems to be picking up on some sort of information in BERT which can reliably distinguish the NtoN construction from its near minimal pair NtoN distractor counterparts, beyond what is possible through lexical semantic clues alone.
 \end{center}
 \end{frame}
 
@@ -602,7 +602,7 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \begin{center}
     \includegraphics[width=0.8\textwidth]{images/task2.png}
     \\[2mm]
-    \small  
+    \small
 \end{center}
 \end{frame}
 
@@ -653,30 +653,28 @@ Informa sullla bontà del classificatore, verificare che il classificatore non s
 \begin{center}
     \includegraphics[width=1\textwidth]{images/task3.png}
     \\[2mm]
-    \small  
+    \small
 \end{center}
 \end{frame}
 
 \begin{frame}{Conclusioni principali}
 \begin{itemize}
     \item Creato un nuovo dataset di istanze NtoN estratte da COCA.
-    
+
     \item Addestrato un \textit{linear probe} per distinguere la costruzione NtoN
     dai suoi quasi-minimal pair e da versioni con ordine delle parole perturbato.
-    
+
     \item I probe mostrano alta accuratezza già nei layer medi di BERT
     e riconoscono in modo robusto la costruzione anche con pochi esempi di training.
-    
-    \item BERT è in grado di disambiguare i principali sottotipi semantici 
+
+    \item BERT è in grado di disambiguare i principali sottotipi semantici
     (SUCCESSION vs. JUXTAPOSITION)
-    
+
     \item Le performance restano stabili anche con forti riduzioni dei dati:
     indizio che la conoscenza costruzionale è codificata latentamente nel modello.
-    
+
     \item Evidenza a supporto dell’ipotesi che gli LLMs acquisiscano informazioni costruzionnali.
 \end{itemize}
 \end{frame}
-
-
 
 \end{document}
