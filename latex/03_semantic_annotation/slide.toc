@@ -1,0 +1,4 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\beamer@sectionintoc {1}{La costruzione NPN}{2}{0}{1}
+\beamer@sectionintoc {2}{Le etichette semantiche}{6}{0}{2}

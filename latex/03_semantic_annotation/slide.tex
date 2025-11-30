@@ -1,0 +1,151 @@
+\documentclass{beamer}
+
+% Per grafica, immagini, figure
+\usepackage{graphicx}
+
+% Per simboli matematici, frecce, ecc.
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Per gestione delle colonne
+\usepackage{multicol}
+
+% Per migliorare lo spacing
+\usepackage{ragged2e}
+
+\usepackage[backend=bibtex,style=authoryear]{biblatex}
+\setbeamertemplate{bibliography item}[text]
+\renewcommand*{\bibfont}{\scriptsize}
+
+\newcommand*{\mycite}[1]{\citetitle{#1} (\cite{#1})}
+
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{tikz}           % Per disegnare blocchi, frecce, diagrammi
+\usetikzlibrary{positioning,fit,arrows.meta}
+
+\usetheme{metropolis} % Tema moderno e minimale
+
+\addbibresource{references.bib}
+
+
+\title{Annotazione semantica costruzione NPN}
+\subtitle{Task di annotazione per agreement dataset} % <-- sottotitolo
+\author{Corso di Semantica a.a. 2025/2026}
+\institute{Università di Bologna}
+\date{2 dicembre 2025}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\section{La costruzione NPN}
+
+\begin{frame}{Oggetto dell'annotazione: la costruzione NPN}
+    \justifying
+    La cxn \textbf{NPN} è un pattern del tipo \textbf{nome + preposizione + nome} con reduplicazione discontinua del medesimo lemma.
+    
+
+  \begin{tcolorbox}[colback=white, colframe=black, arc=4mm, boxrule=0.8pt, center title, title=Construction Schema]
+    \[
+      Noun_1 \; \text{Preposition} \; Noun_2
+    \]
+  \end{tcolorbox}
+
+    \bigskip
+    È stata studiata in modo approfondito per l’inglese (Jackendoff 2008; Sommerer \& Baumann 2021), mentre per l'italiano è stata sistematicamente decritta, discussa e analizzata in Masini (2024). È menzionata in lavori precenti come Schafroth (2020) - fraseologismo a schema fisso - e Mattiola \& Masini (2022) - forma di reduplicazione discontinua.
+\end{frame}
+
+
+
+\begin{frame}{Proprietà formali della costruzione NPN}
+Come per la cxn inglese, anche in italiano la cxn NPN presenta delle proprietà formali ben definite: 
+
+I due nomi nella cxn devono essere formalmente identici (anche dal punto di vista morfologico), e non possono essere liberamente flessi in modo diverso. Quando compaiono forme flesse del lemma con valori di numero differenti, si tratta di una diversa istanziazione della cxn, spesso – ma non necessariamente – associata a uno specifico valore semantico.
+
+    Il numero non può quindi variare nella flessione:
+    \begin{itemize}
+        \item \textit{giorno dopo giorno} $\rightarrow$ \textit{giorni dopo giorni} (hardly acceptable) , mentre
+        \item \textit{viaggi su viaggi} $\neq$ \textit{viaggio su viaggio} perché cambia il significato.
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Proprietà formali della costruzione NPN}
+    \begin{itemize}
+        \item Il secondo nome occorre privo di determinanti.
+        \item Non è ammessa la presenza di aggettivi postnominali dopo il secondo nome, se questi modificando il secondo nome e non l'intera cxn. 
+		 \item Si osservano tuttavia alcune occorrenze che presentano sintagmi nominali complessi (NA/AN), ad esempio:
+        \begin{itemize}
+            \item \textit{giri veloci su giri veloci}
+            \item \textit{centro culturale per centro culturale}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\section{Le etichette semantiche}
+
+\begin{frame}{Significato della cxn}
+Per quanto riguarda la semantica, le espressioni NPN in italiano sembrano essere in linea con il significato non del tutto prevedibile già descritto in letteratura per l’inglese. In particolare, Jackendoff (2008) individua una serie di valori semantici — tra cui:
+\begin{itemize}
+	\item succession > temporal (iterativity)
+	\item spatial (accumulation or distributivity)
+	\item close contact or juxtaposition
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Significato della cxn}
+    Per come postulate in Masini (2024), le etichette semantiche delle costruzioni NPN istanziate dalle preposizioni \textbf{A} e \textbf{SU} sono associate alle seguenti definizioni:
+    
+    \begin{itemize}
+        \item \textbf{succession/iteration/distributivity} \\
+        indica una successione di eventi o una distribuzione nello spazio;
+        \item \textbf{greater plurality/accumulation} \\
+        indica un aumento o un accumulo progressivo;
+        \item \textbf{juxtaposition/contact} \\
+        indica prossimità o contiguità tra due entità.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Esempi}
+    Alcuni esempi per \textbf{greater plurality/accumulation}:
+    
+    \begin{itemize}
+        \item \textit{Come sempre accade, appena un matrimonio va a rotoli si inizia a lavorare fino a tardi, a fare \textbf{riunioni su riunioni}, viaggi improvvisi.}
+        \item \textit{Non sono mai stata contro gli interventi militari a prescindere […]. Ma bisogna evitare di creare \textbf{odio su odio}, fermarsi a riconsiderare gli strumenti con cui vogliamo combattere questa guerra.}
+        \item \textit{E i libri? Il suo amore per i libri era nato là, a mettere \textbf{borotalco su borotalco} sui libri della biblioteca della scuola […]}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Esempi}
+    Alcuni esempi per \textbf{juxtaposition/contact}:
+    
+    \begin{itemize}
+        \item \textit{Così si sente superiore nel cortile, a esempio, sul cav. Bizzini, suo dirimpettaio, \textbf{balcone a balcone}, che vive con la figlia, il genero e i ragazzi un maschio e una femmina e potrebbe essere privilegiato, ma se sapesse scrollarsi di dosso il rischio di venir ficcato in un ospizio per anziani.}
+        \item \textit{E poi ci fu la marsupioterapia, il primo contatto \textbf{cuore a cuore}.}
+        \item \textit{Primo edificio per la musica progettato dallo studio di Michel Rojkind, è il frutto di un processo progettuale sviluppato, \textbf{braccio a braccio} con la direzione dell'Orchestra: le scelte riguardanti il tipo di sala, il numero di sedute e le destinazioni funzionali degli ambienti sono dunque condivise e volute dai successivi inquilini dello spazio.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Esempi}
+    Alcuni esempi per \textbf{succession/iteration/distributivity}:
+    
+    \begin{itemize}
+        \item \textit{E poi scegliete un taglio che esalti la bellezza dei capelli. Il più attuale si fa sfilando \textbf{ciocca a ciocca} per creare l'effetto piuma, che alleggerisce la pettinatura e rende la piega particolarmente facile.}
+        \item \textit{[…] ma avendo in archivio tutte le prenotazioni dell'epoca è riuscita a ricostruire \textbf{viaggio su viaggio}, i voli a Roma dell'ex pubblico ministero.}
+        \item \textit{La sua voce si impoveriva man mano che andava avanti, come se le sue parole si portassero via \textbf{fibra a fibra} il tessuto del suo timbro.}
+    \end{itemize}
+\end{frame}
+
+
+\end{document}
